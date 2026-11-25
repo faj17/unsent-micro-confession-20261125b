@@ -50,6 +50,8 @@ def validate(text: str) -> str:
     if not lines[0].startswith("To:"):
         raise ValueError("first line must be the To: line")
     message = lines[1]
+    if not message.strip():
+        raise ValueError("message must not be blank")
     if len(message) > 200:
         raise ValueError(f"message must be at most 200 characters, got {len(message)}")
     if "\r" in message:
